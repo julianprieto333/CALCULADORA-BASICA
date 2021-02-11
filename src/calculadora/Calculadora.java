@@ -1,10 +1,13 @@
-
 package calculadora;
 import java.util.Scanner;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 
 public class Calculadora {
     public static void main(String[] args) {
-        
+        ScriptEngineManager num = new ScriptEngineManager();
+    ScriptEngine nu=num.getEngineByName("JavaScript");
+    
         //CREACION DE VARIABLES
         
         int opcion;
@@ -14,13 +17,15 @@ public class Calculadora {
         double numero,numero2,numero3;
         double indice,radicando,base,exponente;
         double iva;
+        String resultado1;
+        String igual;
         
         //INICIANDO EL BUCLE
-        
+        try{
         do{
         Scanner cin = new Scanner(System.in);
         System.out.println("\t\tCALCULADORA");
-        System.out.println("1.SUMA\n2.RESTA\n3.MULTIPLICACION\n4.DIVISION\n5.SENO\n6.COSENO\n7.TANGENTE\n8.RAIZ ENESIMA\n9.POTENSIA ENESIMA\n10.CALCULAR IVA\n11.TERMINAR");
+        System.out.println("1.SUMA\n2.RESTA\n3.MULTIPLICACION\n4.DIVISION\n5.SENO\n6.COSENO\n7.TANGENTE\n8.RAIZ ENESIMA\n9.POTENCIA ENESIMA\n10.CALCULAR IVA\n11.OPERACIONES COMPUESTAS\n12.TERMINAR");
         System.out.print("\n\t-->OPCION:");
         opcion=cin.nextInt();
         
@@ -120,8 +125,27 @@ public class Calculadora {
             iva=cin.nextDouble();
            System.out.println("El iva del 19% es:"+(iva*0.19));
            break;
+           
+           case 11:
+               try{
+            System.out.println("Ingrese su operacion:");
+            resultado1=cin.nextLine();
+            resultado1=cin.nextLine();
+            igual=nu.eval(resultado1).toString();
+            System.out.println("El resultado es:"+igual);
+               }catch(Exception e){
+                  System.out.println("ERROR");
+               }
+        break;
         }
-        }while(opcion!=11);
+        
+        }while(opcion!=12);
+        
+        //VERIFICACION DE ERRORES
+        
+}catch(Exception e){
+    System.out.println("VUELVE A INTERTARLO");
+    Calculadora.main(null);
+    }
 }
 }
-
